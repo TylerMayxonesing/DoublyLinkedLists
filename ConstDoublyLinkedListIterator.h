@@ -51,28 +51,28 @@ class ConstDoublyLinkedListIterator {
 };
 
 template<typename T>
-ConstDoublyLinkedListIterator<T>::ConstDoublyLinkedListIterator(const DoublyLinkedNode<T>* start)  {
+ConstDoublyLinkedListIterator<T>::ConstDoublyLinkedListIterator(const DoublyLinkedNode<T>* start) : curNode(start)  {
 
 }
 
 template<typename T>
-ConstDoublyLinkedListIterator<T>::ConstDoublyLinkedListIterator()  {
+ConstDoublyLinkedListIterator<T>::ConstDoublyLinkedListIterator() : curNode(nullptr) {
 
 }
 
 template<typename T>
-ConstDoublyLinkedListIterator<T>::ConstDoublyLinkedListIterator(const ConstDoublyLinkedListIterator<T>& orig) {
+ConstDoublyLinkedListIterator<T>::ConstDoublyLinkedListIterator(const ConstDoublyLinkedListIterator<T>& orig) : curNode(orig.curNode) {
 
 }
 
 template<typename T>
 bool ConstDoublyLinkedListIterator<T>::operator==(const ConstDoublyLinkedListIterator<T>& rhs) const {
-
+  return curNode == rhs.curNode;
 }
 
 template<typename T>
 bool ConstDoublyLinkedListIterator<T>::operator!=(const ConstDoublyLinkedListIterator<T>& rhs) const {
-
+  return !(*this == rhs.curNode);
 }
 
 template<typename T>
