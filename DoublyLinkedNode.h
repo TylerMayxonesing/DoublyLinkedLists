@@ -52,7 +52,6 @@ T& DoublyLinkedNode<T>::getValue(){
   return value;
 }
 
-
 template<typename T>
 void DoublyLinkedNode<T>::setNext(DoublyLinkedNode<T>* newNext){
   next = newNext;

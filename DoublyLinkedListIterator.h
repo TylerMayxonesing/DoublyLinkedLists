@@ -126,8 +126,4 @@ typename DoublyLinkedListIterator<T>::reference DoublyLinkedListIterator<T>::ope
   }
 }
 
-
-
-
-
 #endif //DLLPROJECT_DOUBLYLINKEDLISTITERATOR_H

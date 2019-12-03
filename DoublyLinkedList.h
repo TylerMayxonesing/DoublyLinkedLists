@@ -117,9 +117,7 @@ DoublyLinkedList<T>::DoublyLinkedList(const std::vector<T>& values):head(values.
 
 template<typename T>
 bool DoublyLinkedList<T>::empty() const {
-  if(this->size() == 0){
-    return true;
-  }
+  return this->size() == 0;
 }
 
 template<typename T>
@@ -209,14 +207,14 @@ typename DoublyLinkedList<T>::iterator DoublyLinkedList<T>::end() {
 
 template<typename T>
 void DoublyLinkedList<T>::insert(iterator& position, const T& value) {
-  for(int i = 0; i < position; i++){
-
-  }
+  DoublyLinkedList<T> newNode = new DoublyLinkedList<T>(value, position.curNode, (position.curNode)->getNext());
+  position.curNode->setNext(newNode);
+  ++newNode.size();
+  //May need revision
 }
 
 template<typename T>
 void DoublyLinkedList<T>::erase(iterator& position) {
-
 
 }
 
