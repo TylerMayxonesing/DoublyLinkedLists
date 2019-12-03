@@ -8,9 +8,8 @@
 
 template<typename T>
 class DoublyLinkedNode {
+ public:
   explicit DoublyLinkedNode<T> (const T& value, DoublyLinkedNode<T>* previous, DoublyLinkedNode<T>* next);
-
-//  DoublyLinkedNode();
 
   virtual ~DoublyLinkedNode();
 
@@ -21,7 +20,7 @@ class DoublyLinkedNode {
   void setPrevious(DoublyLinkedNode<T>* newPrevious);
   void setNext(DoublyLinkedNode<T>* newNext);
   void setValue (T& newValue);
- private:
+ public:
   DoublyLinkedNode<T>* previous;
   DoublyLinkedNode<T>* next;
   T& value;
@@ -34,9 +33,7 @@ template<typename T>
 DoublyLinkedNode<T>::DoublyLinkedNode(const T& value, DoublyLinkedNode<T>* previous, DoublyLinkedNode<T>* next):previous(previous),next(next), value(value){
 }
 
-//template<typename T>
-//DoublyLinkedNode<T>::DoublyLinkedNode():previous(nullptr),next(nullptr), value(){
-//}
+
 
 template<typename T>
 DoublyLinkedNode<T>* DoublyLinkedNode<T>::getNext() const{
