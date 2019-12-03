@@ -15,12 +15,12 @@ class DoublyLinkedNode {
 
   DoublyLinkedNode<T>* getPrevious()const;
   DoublyLinkedNode<T>* getNext() const;
-  T& getValue();
+  T& getValue() const;
 
   void setPrevious(DoublyLinkedNode<T>* newPrevious);
   void setNext(DoublyLinkedNode<T>* newNext);
   void setValue (T& newValue);
- public:
+ private:
   DoublyLinkedNode<T>* previous;
   DoublyLinkedNode<T>* next;
   T& value;
@@ -45,7 +45,7 @@ DoublyLinkedNode<T>* DoublyLinkedNode<T>::getPrevious() const{
 }
 
 template<typename T>
-T& DoublyLinkedNode<T>::getValue(){
+T& DoublyLinkedNode<T>::getValue()const{
   return value;
 }
 

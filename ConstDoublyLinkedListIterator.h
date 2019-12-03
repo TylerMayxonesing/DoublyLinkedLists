@@ -72,7 +72,7 @@ bool ConstDoublyLinkedListIterator<T>::operator==(const ConstDoublyLinkedListIte
 
 template<typename T>
 bool ConstDoublyLinkedListIterator<T>::operator!=(const ConstDoublyLinkedListIterator<T>& rhs) const {
-  return !(*this == rhs.curNode);
+  return !(*this == rhs);
 }
 
 template<typename T>

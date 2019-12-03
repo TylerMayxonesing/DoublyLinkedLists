@@ -47,6 +47,8 @@ class DoublyLinkedListIterator {
   //get a reference to the value
   const_reference operator*() const;
   reference operator*();
+  //get a reference to the currentNode
+  DoublyLinkedNode<T>* getNode();
 
  private:
   DoublyLinkedNode<T>* curNode;
@@ -125,5 +127,11 @@ typename DoublyLinkedListIterator<T>::reference DoublyLinkedListIterator<T>::ope
     throw DoublyLinkedListOutOfBoundsError();
   }
 }
+
+template<typename T>
+DoublyLinkedNode<T>* DoublyLinkedListIterator<T>::getNode() {
+  return curNode;
+}
+
 
 #endif //DLLPROJECT_DOUBLYLINKEDLISTITERATOR_H
