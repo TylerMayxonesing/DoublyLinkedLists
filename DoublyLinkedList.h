@@ -135,13 +135,11 @@ bool DoublyLinkedList<T>::empty() const {
 
 template<typename T>
 int DoublyLinkedList<T>::size() const {
-  int count = 0;
-  iterator itr (this->head);
-  while (itr.getNode()->getValue() != tail->getValue()){
-    ++count;
+  iterator itr(head);
+  while(itr.getNode()!=tail) {
     itr++;
   }
-  return count;
+  return std::distance(iterator(head), itr);
 }
 
 template<typename T>
@@ -166,7 +164,6 @@ T& DoublyLinkedList<T>::back() {
 
 template<typename T>
 void DoublyLinkedList<T>::push_front(const T& value) {
-  //DoublyLinkedList<T> Node(value, previous, next);
   DoublyLinkedNode<T>* newHeadNode = new DoublyLinkedNode<T>(value, nullptr, head);
   if(!this->empty()){
     head->setPrevious(newHeadNode);
@@ -175,7 +172,7 @@ void DoublyLinkedList<T>::push_front(const T& value) {
     tail = newHeadNode;
   }
   head = newHeadNode;
-  ++((*this).size());
+  this->size()++;
 }
 
 template<typename T>
@@ -188,17 +185,25 @@ void DoublyLinkedList<T>::push_back(const T& value) {
     head = newTailNode;
   }
   tail = newTailNode;
-  ++((*this).size());
+  this->size()++;
 }
 
 template<typename T>
 void DoublyLinkedList<T>::clear() {
+  DoublyLinkedNode<T>* Node = head;
 
+  while(Node != NULL){
+    DoublyLinkedNode<T>* newNode = Node->getNext();
+    delete Node;
+    Node = newNode;
+  }
+  head = nullptr;
+  tail = nullptr;
 }
 
 template<typename T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
-
+  clear();
 }
 
 template<typename T>
@@ -227,7 +232,7 @@ void DoublyLinkedList<T>::insert(iterator& position, const T& value) {
   auto* newNode = new DoublyLinkedNode<T>(value, (position).getNode()->getNext()->getPrevious(), (position).getNode()->getNext());
 
   (position).getNode()->setNext(newNode);
-  ++((*this).size());
+  ++this->size();
   //May need revision
 }
 
