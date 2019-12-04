@@ -4,4 +4,6 @@
 
 #include "DoublyLinkedListOutOfBoundsError.h"
 
-
+DoublyLinkedListOutOfBoundsError::DoublyLinkedListOutOfBoundsError(){
+  what();
+}

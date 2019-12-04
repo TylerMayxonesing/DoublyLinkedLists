@@ -108,11 +108,14 @@ const ConstDoublyLinkedListIterator<T> ConstDoublyLinkedListIterator<T>::operato
 
 template<typename T>
 typename ConstDoublyLinkedListIterator<T>::reference ConstDoublyLinkedListIterator<T>::operator*() const {
-  if(*this) {
-    return curNode->getValue();
-  }else{
+  try{
     throw DoublyLinkedListOutOfBoundsError();
   }
+  catch(std::exception& e){
+    std::cout << e.what();
+  }
+  return curNode->getValue();
+
 }
 
 

@@ -4,4 +4,7 @@
 
 #include "DoublyLinkedListError.h"
 
+const char* DoublyLinkedListError::what() const noexcept {
+  return "oooops\n";
+}
 

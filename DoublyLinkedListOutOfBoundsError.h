@@ -4,9 +4,11 @@
 
 #ifndef TESTDOUBLELINKEDLIST_DOUBLYLINKEDLISTOUTOFBOUNDSERROR_H
 #define TESTDOUBLELINKEDLIST_DOUBLYLINKEDLISTOUTOFBOUNDSERROR_H
-#include "DoublyLinkedListError.h"
-class DoublyLinkedListOutOfBoundsError  {
 
+#include "DoublyLinkedListError.h"
+class DoublyLinkedListOutOfBoundsError : public DoublyLinkedListError, std::exception {
+ public:
+  DoublyLinkedListOutOfBoundsError();
 };
 
 #endif //TESTDOUBLELINKEDLIST_DOUBLYLINKEDLISTOUTOFBOUNDSERROR_H

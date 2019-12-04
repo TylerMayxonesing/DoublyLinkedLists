@@ -5,3 +5,6 @@
 #include "DoublyLinkedListEmptyError.h"
 #include <sstream>
 
+DoublyLinkedListEmptyError::DoublyLinkedListEmptyError(){
+  what();
+}

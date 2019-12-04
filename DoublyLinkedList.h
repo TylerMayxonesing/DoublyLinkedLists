@@ -155,22 +155,51 @@ int DoublyLinkedList<T>::size() const {
 
 template<typename T>
 const T& DoublyLinkedList<T>::front() const {
-  return this->head->getValue();
+  if(!(this->head)) {
+    return this->head->getValue();
+  }
+  else{
+    throw DoublyLinkedListEmptyError();
+  }
 }
 
 template<typename T>
 T& DoublyLinkedList<T>::front() {
-  return this->head->getValue();
+  if(!(this->empty())) {
+    return this->head->getValue();
+  }
+  try{
+    throw DoublyLinkedListEmptyError();
+  }
+  catch(std::exception& e){
+    std::cout << e.what();
+  }
 }
 
 template<typename T>
 const T& DoublyLinkedList<T>::back() const {
-  return this->tail->getValue();
+  if(!(this->empty())) {
+    return this->tail->getValue();
+  }
+  try{
+    throw DoublyLinkedListEmptyError();
+  }
+  catch(std::exception& e){
+    std::cout << e.what();
+  }
 }
 
 template<typename T>
 T& DoublyLinkedList<T>::back() {
-  return this->tail->getValue();
+  if(!(this->empty())) {
+    return this->tail->getValue();
+  }
+  try{
+    throw DoublyLinkedListEmptyError();
+  }
+  catch(std::exception& e){
+    std::cout << e.what();
+  }
 }
 
 template<typename T>
