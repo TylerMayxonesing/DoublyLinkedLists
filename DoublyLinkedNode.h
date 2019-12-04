@@ -9,28 +9,28 @@
 template<typename T>
 class DoublyLinkedNode {
  public:
-  explicit DoublyLinkedNode<T> (const T& value, DoublyLinkedNode<T>* previous, DoublyLinkedNode<T>* next);
+  explicit DoublyLinkedNode<T> (const T value, DoublyLinkedNode<T>* previous, DoublyLinkedNode<T>* next);
 
-  virtual ~DoublyLinkedNode();
+  //virtual ~DoublyLinkedNode();
 
   DoublyLinkedNode<T>* getPrevious()const;
   DoublyLinkedNode<T>* getNext() const;
-  T& getValue() const;
-
+  T& getValue();
+  const T& getValue()const;
   void setPrevious(DoublyLinkedNode<T>* newPrevious);
   void setNext(DoublyLinkedNode<T>* newNext);
   void setValue (T& newValue);
  private:
   DoublyLinkedNode<T>* previous;
   DoublyLinkedNode<T>* next;
-  T& value;
+  T value;
 
 
 };
 
 
 template<typename T>
-DoublyLinkedNode<T>::DoublyLinkedNode(const T& value, DoublyLinkedNode<T>* previous, DoublyLinkedNode<T>* next):previous(previous),next(next), value(value){
+DoublyLinkedNode<T>::DoublyLinkedNode(const T value, DoublyLinkedNode<T>* previous, DoublyLinkedNode<T>* next):previous(previous),next(next), value(value){
 }
 
 
@@ -45,7 +45,13 @@ DoublyLinkedNode<T>* DoublyLinkedNode<T>::getPrevious() const{
 }
 
 template<typename T>
-T& DoublyLinkedNode<T>::getValue()const{
+T& DoublyLinkedNode<T>::getValue(){
+  return value;
+}
+
+
+template<typename T>
+const T& DoublyLinkedNode<T>::getValue()const{
   return value;
 }
 

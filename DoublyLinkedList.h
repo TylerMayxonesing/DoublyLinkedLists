@@ -90,6 +90,7 @@ class DoublyLinkedList {
  private:
   DoublyLinkedNode<T>* head;
   DoublyLinkedNode<T>* tail;
+  int len;
 
 
 };
@@ -107,24 +108,38 @@ std::istream& operator>>(std::istream& in, DoublyLinkedList<T>& doublyLinkedList
 
 template<typename T>
 DoublyLinkedList<T>::DoublyLinkedList() {
-  head = tail;
+  head = nullptr;
+  tail = nullptr;
+  len = 0;
   //May need revision
 }
 
 template<typename T>
 DoublyLinkedList<T>::DoublyLinkedList(const std::vector<T>& values) {
-  for(unsigned int i = 0; i < values.size(); i++){
-    if (i == 0){
-      auto* newHeadNode = new DoublyLinkedNode<T> (values.at(i), nullptr, tail);
-      head = newHeadNode;
-
-      auto* newTailNode = new DoublyLinkedNode<T> (values.at(i+1), head, nullptr);
-      tail = newTailNode;
+  head = nullptr;
+  tail = nullptr;
+  len = values.size();
+  if(values.empty()){
+    DoublyLinkedList();
+  }
+  else {
+    for (unsigned int i = 0; i < values.size(); i++) {
+      if (i == 0) {
+        auto* newNode = new DoublyLinkedNode<T>(values.at(i), head, tail);
+        head = newNode;
+        tail = head;
+      } else if (i == values.size() - 1) {
+        auto* lastNode = new DoublyLinkedNode<T>(values.at(i), tail, nullptr);
+        tail = lastNode;
+      } else {
+        auto* node = new DoublyLinkedNode<T>(values.at(i), tail, nullptr);
+        tail->setNext(node);
+        tail = node;
+      }
     }
-    else {
-      this->push_back(values.at(i));
-    }
-
+  }
+  for(iterator itr = this->begin(); itr!= this->end(); itr++){
+    std::cout << itr.getNode()->getValue() << std::endl;
   }
 }
 
@@ -135,11 +150,7 @@ bool DoublyLinkedList<T>::empty() const {
 
 template<typename T>
 int DoublyLinkedList<T>::size() const {
-  iterator itr(head);
-  while(itr.getNode()!=tail) {
-    itr++;
-  }
-  return std::distance(iterator(head), itr);
+  return len;
 }
 
 template<typename T>
@@ -164,7 +175,7 @@ T& DoublyLinkedList<T>::back() {
 
 template<typename T>
 void DoublyLinkedList<T>::push_front(const T& value) {
-  DoublyLinkedNode<T>* newHeadNode = new DoublyLinkedNode<T>(value, nullptr, head);
+  auto* newHeadNode = new DoublyLinkedNode<T>(value, nullptr, head);
   if(!this->empty()){
     head->setPrevious(newHeadNode);
   }
@@ -172,12 +183,12 @@ void DoublyLinkedList<T>::push_front(const T& value) {
     tail = newHeadNode;
   }
   head = newHeadNode;
-  this->size()++;
+  len++;
 }
 
 template<typename T>
 void DoublyLinkedList<T>::push_back(const T& value) {
-  DoublyLinkedNode<T>* newTailNode = new DoublyLinkedNode<T> (value, nullptr, tail);
+  auto* newTailNode = new DoublyLinkedNode<T> (value, tail, nullptr);
   if(!this->empty()){
     tail->setNext(newTailNode);
   }
@@ -185,7 +196,7 @@ void DoublyLinkedList<T>::push_back(const T& value) {
     head = newTailNode;
   }
   tail = newTailNode;
-  this->size()++;
+  len++;
 }
 
 template<typename T>
@@ -199,6 +210,8 @@ void DoublyLinkedList<T>::clear() {
   }
   head = nullptr;
   tail = nullptr;
+  len = 0;
+
 }
 
 template<typename T>
@@ -213,7 +226,7 @@ typename DoublyLinkedList<T>::const_iterator DoublyLinkedList<T>::begin() const 
 
 template<typename T>
 typename DoublyLinkedList<T>::const_iterator DoublyLinkedList<T>::end() const {
-  return const_iterator(tail);
+  return const_iterator(tail)++;
 }
 
 template<typename T>
@@ -224,7 +237,7 @@ typename DoublyLinkedList<T>::iterator DoublyLinkedList<T>::begin() {
 
 template<typename T>
 typename DoublyLinkedList<T>::iterator DoublyLinkedList<T>::end() {
-  return iterator(tail);
+  return iterator(tail)++;
 }
 
 template<typename T>
@@ -232,7 +245,7 @@ void DoublyLinkedList<T>::insert(iterator& position, const T& value) {
   auto* newNode = new DoublyLinkedNode<T>(value, (position).getNode()->getNext()->getPrevious(), (position).getNode()->getNext());
 
   (position).getNode()->setNext(newNode);
-  ++this->size();
+  len++;
   //May need revision
 }
 
@@ -251,7 +264,7 @@ typename DoublyLinkedList<T>::const_reverse_iterator DoublyLinkedList<T>::crbegi
 
 template<typename T>
 typename DoublyLinkedList<T>::const_reverse_iterator DoublyLinkedList<T>::crend() const {
-  return const_reverse_iterator (head);
+  return const_reverse_iterator (head)++;
   //May need revision
 }
 
@@ -262,7 +275,7 @@ typename DoublyLinkedList<T>::reverse_iterator DoublyLinkedList<T>::rbegin() {
 
 template<typename T>
 typename DoublyLinkedList<T>::reverse_iterator DoublyLinkedList<T>::rend() {
-  return reverse_iterator (head);
+  return reverse_iterator (head)++;
 }
 
 template<typename T>
