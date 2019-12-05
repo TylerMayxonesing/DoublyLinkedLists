@@ -242,9 +242,13 @@ typename DoublyLinkedList<T>::iterator DoublyLinkedList<T>::end() {
 
 template<typename T>
 void DoublyLinkedList<T>::insert(iterator& position, const T& value) {
-    auto* newNode = new DoublyLinkedNode<T>(value, (position).getNode()->getNext()->getPrevious(), (position).getNode()->getNext());
+    auto* newNode = new DoublyLinkedNode<T>(value, (position).getNode(), (position).getNode()->getNext());
 
-    (position).getNode()->setNext(newNode);
+
+
+
+      (position).getNode()->setNext(newNode);
+      (position.getNode())->getNext()->setPrevious(newNode);
     len++;
     //May need revision
 }
@@ -271,26 +275,25 @@ void DoublyLinkedList<T>::erase(iterator& position) {
     if (position.getNode() == head) {
       tail->setPrevious(nullptr);
       head = tail;
-    }
-    else if (position.getNode() == tail) {
+    } else if (position.getNode() == tail) {
       head->setNext(nullptr);
       tail = head;
     }
     len --;
   }
-
-  else {
+  else if(this->size() <= 1){
+    (position).getNode()->setNext(nullptr);
+    (position).getNode()->setPrevious(nullptr);
+    len --;
     head = nullptr;
-    tail = nullptr;
-
+    tail = head;
+//    DoublyLinkedList();
   }
 
-  for(iterator itr = this->begin(); itr!= this->end(); itr++){
-    std::cout << itr.getNode()->getValue() << std::endl;
-  }
-  std::cout << "After Erasing: " << std::endl;
-  std::cout << "Head: " << head->getValue()<<std::endl;
-  std::cout << "TAIL: " << tail->getValue()<<std::endl;
+//  for(iterator itr = this->begin(); itr!= this->end(); itr++){
+//    std::cout << itr.getNode()->getValue() << std::endl;
+//  }
+
 
 
 
