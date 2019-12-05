@@ -137,10 +137,10 @@ DoublyLinkedList<T>::DoublyLinkedList(const std::vector<T>& values) {
             }
         }
     }
-    for(iterator itr = this->begin(); itr!= this->end(); itr++){
-        std::cout << itr.getNode()->getValue() << std::endl;
-    }
-    std::cout << "Before Erasing: " << std::endl;
+//    for(iterator itr = this->begin(); itr!= this->end(); itr++){
+//        std::cout << itr.getNode()->getValue() << std::endl;
+//    }
+//    std::cout << "Before Erasing: " << std::endl;
 }
 
 template<typename T>
@@ -249,21 +249,21 @@ void DoublyLinkedList<T>::insert(iterator& position, const T& value) {
       len++;
     }
     else if(this->size() == 1) {
-      auto* newNode = new DoublyLinkedNode<T>(value, head, nullptr);
-      (position).getNode()->setNext(newNode);
-      (position.getNode())->getNext()->setPrevious(newNode);
-      tail = newNode;
-      len++;
+      push_front(value);
     }
-    else if (position == this->end()){
-      push_back(value);
-      len ++;
-    }
-    else {
-      auto* newNode = new DoublyLinkedNode<T>(value, (position).getNode(), (position).getNode()->getNext());
-      (position).getNode()->setNext(newNode);
-      (position.getNode())->getNext()->setPrevious(newNode);
-      len++;
+    else if (this->size() >= 2){
+      if(position.getNode() == head){
+        push_front(value);
+      }
+      else if (position == this->end()){
+        push_back(value);
+      }
+      else {
+        auto* newNode = new DoublyLinkedNode<T>(value, (position).getNode()->getPrevious(), (position).getNode());
+        (position).getNode()->setPrevious(newNode);
+        (position.getNode())->getPrevious()->setNext(newNode);
+        len++;
+      }
     }
 }
 
