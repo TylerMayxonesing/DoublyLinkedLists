@@ -249,7 +249,12 @@ void DoublyLinkedList<T>::insert(iterator& position, const T& value) {
       len++;
     }
     else if(this->size() == 1) {
-      push_front(value);
+      if(position != this->end()) {
+        push_front(value);
+      }
+      else{
+        push_back(value);
+      }
     }
     else if (this->size() >= 2){
       if(position.getNode() == head){
@@ -260,8 +265,8 @@ void DoublyLinkedList<T>::insert(iterator& position, const T& value) {
       }
       else {
         auto* newNode = new DoublyLinkedNode<T>(value, (position).getNode()->getPrevious(), (position).getNode());
-        (position).getNode()->setPrevious(newNode);
         (position.getNode())->getPrevious()->setNext(newNode);
+        (position).getNode()->setPrevious(newNode);
         len++;
       }
     }
