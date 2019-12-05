@@ -108,13 +108,11 @@ const ConstReverseDoublyLinkedListIterator<T> ConstReverseDoublyLinkedListIterat
 
 template<typename T>
 typename ConstReverseDoublyLinkedListIterator<T>::reference ConstReverseDoublyLinkedListIterator<T>::operator*() const {
-  try{
+  if(*this) {
+    return curNode->getValue();
+  }else{
     throw DoublyLinkedListOutOfBoundsError();
   }
-  catch(std::exception& e){
-    std::cout << e.what();
-  }
-  return curNode->getValue();
 }
 
 

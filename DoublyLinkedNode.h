@@ -8,22 +8,22 @@
 
 template<typename T>
 class DoublyLinkedNode {
- public:
-  explicit DoublyLinkedNode<T> (const T value, DoublyLinkedNode<T>* previous, DoublyLinkedNode<T>* next);
+public:
+    explicit DoublyLinkedNode<T> (const T value, DoublyLinkedNode<T>* previous, DoublyLinkedNode<T>* next);
 
-  //virtual ~DoublyLinkedNode();
+    //virtual ~DoublyLinkedNode();
 
-  DoublyLinkedNode<T>* getPrevious()const;
-  DoublyLinkedNode<T>* getNext() const;
-  T& getValue();
-  const T& getValue()const;
-  void setPrevious(DoublyLinkedNode<T>* newPrevious);
-  void setNext(DoublyLinkedNode<T>* newNext);
-  void setValue (T& newValue);
- private:
-  DoublyLinkedNode<T>* previous;
-  DoublyLinkedNode<T>* next;
-  T value;
+    DoublyLinkedNode<T>* getPrevious()const;
+    DoublyLinkedNode<T>* getNext() const;
+    T& getValue();
+    const T& getValue()const;
+    void setPrevious(DoublyLinkedNode<T>* newPrevious);
+    void setNext(DoublyLinkedNode<T>* newNext);
+    void setValue (T& newValue);
+private:
+    DoublyLinkedNode<T>* previous;
+    DoublyLinkedNode<T>* next;
+    T value;
 
 
 };
@@ -37,37 +37,37 @@ DoublyLinkedNode<T>::DoublyLinkedNode(const T value, DoublyLinkedNode<T>* previo
 
 template<typename T>
 DoublyLinkedNode<T>* DoublyLinkedNode<T>::getNext() const{
-  return next;
+    return next;
 }
 template<typename T>
 DoublyLinkedNode<T>* DoublyLinkedNode<T>::getPrevious() const{
-  return previous;
+    return previous;
 }
 
 template<typename T>
 T& DoublyLinkedNode<T>::getValue(){
-  return value;
+    return value;
 }
 
 
 template<typename T>
 const T& DoublyLinkedNode<T>::getValue()const{
-  return value;
+    return value;
 }
 
 template<typename T>
 void DoublyLinkedNode<T>::setNext(DoublyLinkedNode<T>* newNext){
-  next = newNext;
+    next = newNext;
 }
 
 template<typename T>
 void DoublyLinkedNode<T>::setPrevious(DoublyLinkedNode<T>* newPrevious){
-  previous = newPrevious;
+    previous = newPrevious;
 }
 
 template<typename T>
 void DoublyLinkedNode<T>::setValue(T& newValue){
-  value = newValue;
+    value = newValue;
 }
 
 

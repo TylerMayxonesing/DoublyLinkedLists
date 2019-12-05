@@ -108,25 +108,20 @@ const ReverseDoublyLinkedListIterator<T> ReverseDoublyLinkedListIterator<T>::ope
 
 template<typename T>
 typename ReverseDoublyLinkedListIterator<T>::const_reference ReverseDoublyLinkedListIterator<T>::operator*() const {
-  try{
+  if(*this) {
+    return curNode->getValue();
+  }else{
     throw DoublyLinkedListOutOfBoundsError();
   }
-  catch(std::exception& e){
-    std::cout << e.what();
-  }
-  return curNode->getValue();
 }
 
 template<typename T>
 typename ReverseDoublyLinkedListIterator<T>::reference ReverseDoublyLinkedListIterator<T>::operator*() {
-
-  try{
+  if(*this) {
+    return curNode->getValue();
+  }else{
     throw DoublyLinkedListOutOfBoundsError();
   }
-  catch(std::exception& e){
-    std::cout << e.what();
-  }
-  return curNode->getValue();
 }
 
 

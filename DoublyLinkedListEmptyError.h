@@ -5,11 +5,8 @@
 #ifndef TESTDOUBLELINKEDLIST_DOUBLYLINKEDLISTEMPTYERROR_H
 #define TESTDOUBLELINKEDLIST_DOUBLYLINKEDLISTEMPTYERROR_H
 
-#include "DoublyLinkedListError.h"
+class DoublyLinkedListEmptyError  {
 
-class DoublyLinkedListEmptyError : public DoublyLinkedListError {
- public:
-  DoublyLinkedListEmptyError();
 };
 
 
