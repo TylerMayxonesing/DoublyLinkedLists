@@ -242,15 +242,29 @@ typename DoublyLinkedList<T>::iterator DoublyLinkedList<T>::end() {
 
 template<typename T>
 void DoublyLinkedList<T>::insert(iterator& position, const T& value) {
-    auto* newNode = new DoublyLinkedNode<T>(value, (position).getNode(), (position).getNode()->getNext());
-
-
-
-
+    if(this->empty()){
+      auto* newNode = new DoublyLinkedNode<T>(value, nullptr, nullptr);
+      head = newNode;
+      tail = head;
+      len++;
+    }
+    else if(this->size() == 1) {
+      auto* newNode = new DoublyLinkedNode<T>(value, head, nullptr);
       (position).getNode()->setNext(newNode);
       (position.getNode())->getNext()->setPrevious(newNode);
-    len++;
-    //May need revision
+      tail = newNode;
+      len++;
+    }
+    else if (position == this->end()){
+      push_back(value);
+      len ++;
+    }
+    else {
+      auto* newNode = new DoublyLinkedNode<T>(value, (position).getNode(), (position).getNode()->getNext());
+      (position).getNode()->setNext(newNode);
+      (position.getNode())->getNext()->setPrevious(newNode);
+      len++;
+    }
 }
 
 template<typename T>
